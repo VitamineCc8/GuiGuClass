@@ -4,10 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.wei.ggkt.model.vod.Teacher;
 
 /**
- * <p>
- * 讲师 服务类
- * </p>
- *
  * @author wei
  * @since 2022-09-07
  */

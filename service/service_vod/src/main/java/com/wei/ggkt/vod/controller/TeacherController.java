@@ -1,6 +1,5 @@
 package com.wei.ggkt.vod.controller;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -25,8 +24,15 @@ import java.util.List;
  */
 @Api(tags = "讲师管理接口")
 @RestController
+@CrossOrigin
 @RequestMapping("/admin/vod/teacher")
 public class TeacherController {
+
+    //gqw-guiguclass-1313868630.cos.ap-guangzhou.myqcloud.com
+    //SecretId: AKIDoWIrQs66rOgjX7TbWCtTpwoSs42mHZga
+    //SecretKey: lIbdS2MRK0TijV1JMA2nJdmjU4e5OSHq
+    //APPID:1313868630
+
     @Autowired
     private TeacherService teacherService;
 
@@ -60,15 +66,15 @@ public class TeacherController {
 
     //条件查询分页列表
     @ApiOperation("条件查询分页")
-    @PostMapping("findQuery/{page}/{limit}")
-    public Result findPage(@ApiParam(name = "page", value = "当前页码", required = true)
-                           @PathVariable long page,
+    @PostMapping("findQuery/{current}/{limit}")
+    public Result findPage(@ApiParam(name = "current", value = "当前页码", required = true)
+                           @PathVariable long current,
                            @ApiParam(name = "limit", value = "每页记录数", required = true)
                            @PathVariable long limit,
                            @ApiParam(name = "teacherVo", value = "查询对象", required = false)
                            @RequestBody(required = false) TeacherQueryVo teacherQueryVo) {
         //创建page对象，传递当前页和每页记录数
-        Page<Teacher> teacherPage = new Page<>(page, limit);
+        Page<Teacher> teacherPage = new Page<>(current, limit);
         //获取条件值
         QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
         IPage<Teacher> ipage;
