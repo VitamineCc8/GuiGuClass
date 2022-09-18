@@ -1,7 +1,6 @@
 package com.wei.ggkt.vod.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wei.ggkt.exception.GgktException;
 import com.wei.ggkt.model.vod.Teacher;
@@ -29,8 +28,6 @@ import java.util.List;
 public class TeacherController {
 
     //gqw-guiguclass-1313868630.cos.ap-guangzhou.myqcloud.com
-    //SecretId: AKIDoWIrQs66rOgjX7TbWCtTpwoSs42mHZga
-    //SecretKey: lIbdS2MRK0TijV1JMA2nJdmjU4e5OSHq
     //APPID:1313868630
 
     @Autowired
@@ -77,10 +74,8 @@ public class TeacherController {
         Page<Teacher> teacherPage = new Page<>(current, limit);
         //获取条件值
         QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
-        IPage<Teacher> ipage;
         if (teacherQueryVo == null) {
-            ipage = teacherService.page(teacherPage, null);
-            return Result.ok(ipage);
+            return Result.ok(teacherService.page(teacherPage, null));
         } else {
             String name = teacherQueryVo.getName();//讲师名称
             Integer level = teacherQueryVo.getLevel();//讲师级别
@@ -101,8 +96,7 @@ public class TeacherController {
             }
         }
         //调用方法得到分页查询结果
-        ipage = teacherService.page(teacherPage, wrapper);
-        return Result.ok(ipage);
+        return Result.ok(teacherService.page(teacherPage, wrapper));
     }
 
 

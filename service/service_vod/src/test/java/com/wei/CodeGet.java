@@ -20,9 +20,9 @@ public class CodeGet {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         //gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setOutputDir("E:\\A-Programming file\\GuiGuClass\\service\\service_vod"+"/src/main/java");
+        gc.setOutputDir("E:\\A-Programming file\\GuiGuClass\\service\\service_vod" + "/src/main/java");
 
-        gc.setServiceName("%sService");	//去掉Service接口的首字母I
+        gc.setServiceName("%sService");    //去掉Service接口的首字母I
         gc.setAuthor("wei");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
@@ -49,7 +49,7 @@ public class CodeGet {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("subject");
+        strategy.setInclude("video_visitor");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 
