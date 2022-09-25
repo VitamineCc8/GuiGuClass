@@ -1,12 +1,19 @@
 package com.wei.ggkt.vod.controller;
 
+
 import com.wei.ggkt.exception.GgktException;
 import com.wei.ggkt.result.Result;
+import com.wei.ggkt.vod.service.VodService;
 import com.wei.ggkt.vod.utils.ConstantPropertiesUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import com.wei.ggkt.vod.utils.Signature;
 
+import java.io.IOException;
 import java.util.Random;
 
 @Api(tags = "腾讯云点播")
@@ -18,8 +25,9 @@ public class VodController {
     @Autowired
     private VodService vodService;
 
+
     //返回客户端上传视频签名
-    @GetMapping("sign")
+    @PostMapping("sign")
     public Result sign() {
         Signature sign = new Signature();
         // 设置 App 的云 API 密钥
@@ -39,11 +47,14 @@ public class VodController {
         }
     }
 
-    //上传视频接口
+    //上传视频接口(基本没用了，不能找到前端传递的文件路径)
+    @ApiOperation(value = "视频上传")
     @PostMapping("upload")
-    public Result upload() {
-        String fileId = vodService.updateVideo();
-        return Result.ok(fileId);
+    public Result upload(
+            @ApiParam(name = "file", value = "文件", required = true)
+            @RequestParam("file") MultipartFile file) throws IOException {
+        String fileId = vodService.updateVideo(file);
+        return Result.ok(fileId).message("视频上传成功");
     }
 
     //删除腾讯云视频

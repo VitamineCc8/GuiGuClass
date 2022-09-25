@@ -11,7 +11,7 @@ import java.util.Map;
  * @DateTime 2022/9/8 21:11
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/admin/vod/user")
 public class LoginController {
 

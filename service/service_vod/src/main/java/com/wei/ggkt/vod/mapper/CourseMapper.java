@@ -3,6 +3,7 @@ package com.wei.ggkt.vod.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wei.ggkt.model.vod.Course;
 import com.wei.ggkt.vo.vod.CoursePublishVo;
+import com.wei.ggkt.vo.vod.CourseVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,6 @@ import org.apache.ibatis.annotations.Select;
 public interface CourseMapper extends BaseMapper<Course> {
 
     CoursePublishVo selectCoursePublishVoById(@Param("id") Long id);
+
+    CourseVo selectCourseVoById(@Param("courseId") Long courseId);
 }

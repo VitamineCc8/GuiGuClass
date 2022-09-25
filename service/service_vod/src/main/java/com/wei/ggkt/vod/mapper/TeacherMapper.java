@@ -2,6 +2,7 @@ package com.wei.ggkt.vod.mapper;
 
 import com.wei.ggkt.model.vod.Teacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -12,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-09-07
  */
 
+@Mapper
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
 }

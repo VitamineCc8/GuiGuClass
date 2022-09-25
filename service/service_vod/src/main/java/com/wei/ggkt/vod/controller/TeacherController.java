@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Api(tags = "讲师管理接口")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/admin/vod/teacher")
 public class TeacherController {
 

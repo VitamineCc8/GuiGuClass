@@ -33,7 +33,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
 
     //章节小结列表封装
     @Override
-    public List<ChapterVo> getNestedTreeList(Long courseId) {
+    public List<ChapterVo> getTreeList(Long courseId)  {
         List<ChapterVo> chapterVoList = new ArrayList<>();
 
         //获取章信息
@@ -73,6 +73,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
         return chapterVoList;
     }
 
+
     //根据课程id删除章节
     @Override
     public void removeChapterByCourseId(Long id) {
@@ -80,4 +81,5 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
         wrapper.eq("course_id", id);
         baseMapper.delete(wrapper);
     }
+
 }

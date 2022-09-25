@@ -35,4 +35,8 @@ public interface CourseService extends IService<Course> {
     void removeCourseId(Long id);
 
     List<Course> findlist();
+
+    Map<String, Object> findPage(Page<Course> pageParam, CourseQueryVo courseQueryVo);
+
+    Map<String, Object> getInfoById(Long courseId);
 }

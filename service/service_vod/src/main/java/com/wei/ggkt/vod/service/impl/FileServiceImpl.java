@@ -63,7 +63,7 @@ public class FileServiceImpl implements FileService {
                     new PutObjectRequest(bucketName, key, inputStream, objectMetadata);
             PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
             System.out.println(JSON.toJSONString(putObjectResult));
-            //https://ggkt-atguigu-1310644373.cos.ap-beijing.myqcloud.com/01.jpg
+            //https://ggkt-wei-1310644373.cos.ap-beijing.myqcloud.com/01.jpg
             String url = "https://" + bucketName + "." + "cos" + "." + endpoint + ".myqcloud.com" + "/" + key;
             return url;
         } catch (Exception clientException) {
