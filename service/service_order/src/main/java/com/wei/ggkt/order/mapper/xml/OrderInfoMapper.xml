@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.ggkt.order.mapper.OrderInfoMapper">
+
+
+    <select id="getOrderStatus" resultType="com.wei.ggkt.model.order.OrderInfo">
+        SELECT *
+        FROM order_info o1,
+             order_detail o2
+        WHERE o1.id = o2.id
+          AND o1.user_id = #{userId}
+          AND o2.course_id = #{courseId}
+          AND o1.order_status = 1
+    </select>
+</mapper>

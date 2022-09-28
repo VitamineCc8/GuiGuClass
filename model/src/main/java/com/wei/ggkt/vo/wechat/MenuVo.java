@@ -14,7 +14,7 @@ public class MenuVo {
     @ApiModelProperty(value = "id")
     private Long id;
 
-    @ApiModelProperty(value = "id")
+    @ApiModelProperty(value = "parentId")
     private Long parentId;
 
     @ApiModelProperty(value = "名称")
