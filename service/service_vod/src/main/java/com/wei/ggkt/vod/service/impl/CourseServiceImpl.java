@@ -3,10 +3,12 @@ package com.wei.ggkt.vod.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wei.ggkt.client.order.OrderFeignClient;
 import com.wei.ggkt.model.vod.Course;
 import com.wei.ggkt.model.vod.CourseDescription;
 import com.wei.ggkt.model.vod.Subject;
 import com.wei.ggkt.model.vod.Teacher;
+import com.wei.ggkt.utils.AuthContextHolder;
 import com.wei.ggkt.vo.vod.*;
 import com.wei.ggkt.vod.mapper.CourseMapper;
 import com.wei.ggkt.vod.service.*;
@@ -45,6 +47,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Autowired
     private ChapterService chapterService;
+
+    @Autowired
+    private OrderFeignClient orderFeignClient;
 
     //点播课程列表
     @Override
@@ -264,7 +269,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         map.put("chapterVoList", chapterVoList);
         map.put("description", null != courseDescription ? courseDescription.getDescription() : "");
         map.put("teacher", teacher);
-        map.put("isBuy", false);//是否购买
+
+        //查询该用户是否购买
+        Long userId = AuthContextHolder.getUserId();
+        boolean isBuy = orderFeignClient.getOrderStatus(courseId, userId);
+        map.put("isBuy", isBuy);//是否购买
         return map;
     }
 
